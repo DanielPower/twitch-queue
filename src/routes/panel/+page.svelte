@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Review from '../../components/Review.svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
 	import { onMount } from 'svelte';
@@ -15,29 +16,17 @@
 </script>
 
 <div class={`panel ${theme}`}>
-	<h1>Review Queue</h1>
+	<h1>Review Queue ({data.queue.length})</h1>
 	{#if data.queue.length === 0}
 		<p>The queue is empty</p>
 	{:else}
-		<ol>
-			{#each data.queue as item}
-				<li>{item}</li>
-			{/each}
-		</ol>
+		{#each data.queue as item}
+			<Review queueItem={item} />
+		{/each}
 	{/if}
 </div>
 
 <style>
-	:global(*, *::before, *::after) {
-		box-sizing: border-box;
-	}
-	:global(body) {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-		margin: 0;
-	}
-
 	.panel {
 		padding: 10px;
 		flex-grow: 1;
@@ -51,15 +40,5 @@
 	.light {
 		color: #201c2b;
 		background-color: #e5e3e8;
-	}
-
-	h1 {
-		margin: 0;
-		font-size: 1.5rem;
-	}
-
-	ol,
-	li {
-		margin: 0;
 	}
 </style>

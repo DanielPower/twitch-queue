@@ -1,10 +1,12 @@
 export const handledMessageIds = new Set<string>();
 
+export type ReviewType = 'map' | 'skin' | 'replay';
+
 export type QueueItem = {
 	user_id: string;
 	user_name: string;
 	user_avatar: string;
-	type: string;
+	type: ReviewType;
 	message: string;
 };
 

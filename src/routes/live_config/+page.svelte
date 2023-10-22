@@ -29,16 +29,6 @@
 </span>
 
 <style>
-	:global(*, *::before, *::after) {
-		box-sizing: border-box;
-	}
-	:global(body) {
-		display: flex;
-		flex-direction: column;
-		margin: 0;
-		min-height: 100vh;
-	}
-
 	.panel {
 		flex-grow: 1;
 	}
@@ -49,10 +39,5 @@
 
 	.light {
 		color: #201c2b;
-	}
-
-	h1 {
-		margin: 0;
-		font-size: 1.5rem;
 	}
 </style>

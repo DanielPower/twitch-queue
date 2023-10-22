@@ -31,8 +31,8 @@
 	}
 
 	.queue-item__image {
-		width: 50px;
-		height: 50px;
+		width: 2.5rem;
+		height: 2.5rem;
 		border-radius: 50%;
 		overflow: hidden;
 		margin-right: 10px;
@@ -41,7 +41,6 @@
 	.queue-item__image img {
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
 	}
 
 	.queue-item__info {

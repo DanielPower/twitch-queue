@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let type: 'map' | 'skin' | 'replay';
-	export let message: string;
+	import type { ReviewType } from '$lib/twitch';
+	export let type: ReviewType;
 </script>
 
 <div class={`badge badge--${type}`}>
