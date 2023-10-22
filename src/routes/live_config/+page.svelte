@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
+	import Review from '../../components/Review.svelte';
 	export let data: PageData;
 	let theme = 'dark';
 
@@ -18,11 +19,9 @@
 	{#if data.queue.length === 0}
 		<p>The queue is empty</p>
 	{:else}
-		<ol>
-			{#each data.queue as item}
-				<li>{item}</li>
-			{/each}
-		</ol>
+		{#each data.queue as item}
+			<Review queueItem={item} />
+		{/each}
 	{/if}
 </div>
 <span>
@@ -55,10 +54,5 @@
 	h1 {
 		margin: 0;
 		font-size: 1.5rem;
-	}
-
-	ol,
-	li {
-		margin: 0;
 	}
 </style>
