@@ -1,13 +1,12 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
-	import { onMount } from 'svelte';
-
 	let theme = 'dark';
+
 	onMount(() => {
 		window.Twitch.ext.onContext((context, _changed) => {
 			if (context.theme) {
-				console.log(context);
 				theme = context.theme;
 			}
 		});
@@ -15,7 +14,7 @@
 </script>
 
 <div class={`panel ${theme}`}>
-	<h1>Review Queue</h1>
+	<h1>Review Queue ({data.queue.length})</h1>
 	{#if data.queue.length === 0}
 		<p>The queue is empty</p>
 	{:else}
@@ -26,6 +25,9 @@
 		</ol>
 	{/if}
 </div>
+<span>
+	<input /><button>Add</button>
+</span>
 
 <style>
 	:global(*, *::before, *::after) {
@@ -34,23 +36,20 @@
 	:global(body) {
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
 		margin: 0;
+		min-height: 100vh;
 	}
 
 	.panel {
-		padding: 10px;
 		flex-grow: 1;
 	}
 
 	.dark {
 		color: #e5e3e8;
-		background-color: #201c2b;
 	}
 
 	.light {
 		color: #201c2b;
-		background-color: #e5e3e8;
 	}
 
 	h1 {
