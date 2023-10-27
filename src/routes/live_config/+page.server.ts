@@ -1,7 +1,1 @@
-import { queue } from '$lib/twitch';
-
-export const load = () => {
-	return {
-		queue
-	};
-};
+export const prerender = true;

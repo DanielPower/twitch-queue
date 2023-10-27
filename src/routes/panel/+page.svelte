@@ -1,29 +1,36 @@
 <script lang="ts">
-	import Review from '../../components/Review.svelte';
-	import type { PageData } from './$types';
-	export let data: PageData;
+	import { getQueue } from '$lib/twitch';
 	import { onMount } from 'svelte';
+	import Review from '../../components/Review.svelte';
 
 	let theme = 'dark';
+
 	onMount(() => {
 		window.Twitch.ext.onContext((context, _changed) => {
 			if (context.theme) {
-				console.log(context);
 				theme = context.theme;
 			}
 		});
 	});
+	const queuePromise = getQueue();
 </script>
 
 <div class={`panel ${theme}`}>
-	<h1>Review Queue ({data.queue.length})</h1>
-	{#if data.queue.length === 0}
-		<p>The queue is empty</p>
-	{:else}
-		{#each data.queue as item}
-			<Review queueItem={item} />
-		{/each}
-	{/if}
+	{#await queuePromise}
+		<h1>Review Queue (...)</h1>
+		<p>Loading...</p>
+	{:then queue}
+		<h1>Review Queue ({queue.length})</h1>
+		{#if queue.length === 0}
+			<p>The queue is empty</p>
+		{:else}
+			{#each queue as item}
+				<Review queueItem={item} />
+			{/each}
+		{/if}
+	{:catch error}
+		<p>Something went wrong: {error.message}</p>
+	{/await}
 </div>
 
 <style>
