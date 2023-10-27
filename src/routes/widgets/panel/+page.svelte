@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import Review from '../../components/Review.svelte';
 	import { getQueue } from '$lib/twitch';
+	import { onMount } from 'svelte';
+	import Review from '../../../components/Review.svelte';
 
 	let theme = 'dark';
 
@@ -31,21 +31,21 @@
 	{:catch error}
 		<p>Something went wrong: {error.message}</p>
 	{/await}
-	<span>
-		<input /><button>Add</button>
-	</span>
 </div>
 
 <style>
 	.panel {
+		padding: 10px;
 		flex-grow: 1;
 	}
 
 	.dark {
 		color: #e5e3e8;
+		background-color: #201c2b;
 	}
 
 	.light {
 		color: #201c2b;
+		background-color: #e5e3e8;
 	}
 </style>
