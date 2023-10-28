@@ -2,11 +2,12 @@
 	import { getQueue } from '$lib/twitch';
 	import { onMount } from 'svelte';
 	import Review from '../../../components/Review.svelte';
+	import { onContext } from '$lib/twitchExt';
 
 	let theme = 'dark';
 
 	onMount(() => {
-		window.Twitch.ext.onContext((context, _changed) => {
+		onContext((context) => {
 			if (context.theme) {
 				theme = context.theme;
 			}

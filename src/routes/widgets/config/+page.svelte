@@ -1,5 +1,6 @@
 <script>
 	import { PUBLIC_SERVER_URL, PUBLIC_APP_CLIENT_ID } from '$env/static/public';
+	import { onContext } from '$lib/twitchExt';
 	import { onMount } from 'svelte';
 	const scopes = ['channel:read:redemptions'].join('+');
 	const url = encodeURI(
@@ -22,11 +23,10 @@
 	let theme = 'dark';
 
 	onMount(() => {
-		window.Twitch.ext.onContext((context, _changed) => {
+		onContext((context, _changed) => {
 			if (context.theme) {
 				theme = context.theme;
 			}
-			console.log(context);
 		});
 	});
 </script>
